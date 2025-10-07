@@ -1,4 +1,34 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541088
+AD-SOYAD:ŞEVVAL DURAN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Telefon Rehberini Alfabetik Sıralama Algoritması
+ALGORITMA RehberiAlfabetikSirala(rehber)
+
+    EĞER rehber boşsa VEYA sadece 1 kişi varsa:
+        Sıralamaya gerek yok
+        ALGORİTMAYI SONLANDIR
+
+    N ← rehber uzunluğu
+
+    TEKRAR i ← 0'DAN N - 2'YE KADAR:
+
+        // i. kişiyi al ve geri kalanlarla karşılaştır
+        TEKRAR j ← i + 1'DEN N - 1'E KADAR:
+
+            isim1 ← rehber[i].isim
+            isim2 ← rehber[j].isim
+
+            EĞER isim1, isim2'den SONRA geliyorsa (alfabetik olarak):
+                // Yer değiştir (isim1 alfabetik sırada daha sonra geliyorsa)
+                GEÇİCİ ← rehber[i]
+                rehber[i] ← rehber[j]
+                rehber[j] ← GEÇİCİ
+
+            DEĞİLSE:
+                // Hiçbir işlem yapma, doğru sıradalar
+
+    // Tüm liste sıralandı
+    DÖNDÜR rehber
+
+ALGORİTMA SONU
