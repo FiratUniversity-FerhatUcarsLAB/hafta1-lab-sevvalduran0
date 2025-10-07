@@ -1,4 +1,76 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541088
+AD-SOYAD:ŞEVVAL DURAN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+ İdeal Kahve Demleme Algoritması
+ FONKSIYON IdealKahveDemle(kahveMiktari, suMiktari, demlemeYontemi, kahveTuru)
+
+    // 1. Başlangıç kontrolleri
+    EĞER kahveMiktari <= 0 VEYA suMiktari <= 0 İSE
+        YAZDIR "Hata: Kahve veya su miktarı sıfır veya negatif olamaz."
+        DÖNDÜR HATALI
+
+    // 2. Kahve-su oranını kontrol et ve ayarla
+    oran ← suMiktari / kahveMiktari
+
+    EĞER demlemeYontemi = "Filtre" İSE
+        HEDEF_ORAN ← 15  // Genelde 1:15 oranı ideal
+    DEĞİLSE EĞER demlemeYontemi = "French Press" İSE
+        HEDEF_ORAN ← 12
+    DEĞİLSE EĞER demlemeYontemi = "Espresso" İSE
+        HEDEF_ORAN ← 2
+    DEĞİLSE
+        HEDEF_ORAN ← 15  // Default
+
+    // Oranı kontrol et
+    EĞER oran > HEDEF_ORAN * 1.2 İSE
+        YAZDIR "Su çok fazla, kahve tadı çok hafif olabilir."
+    DEĞİLSE EĞER oran < HEDEF_ORAN * 0.8 İSE
+        YAZDIR "Su çok az, kahve tadı çok yoğun olabilir."
+    DEĞİLSE
+        YAZDIR "Kahve-su oranı ideal."
+
+    // 3. Su sıcaklığını ayarla (Celsius)
+    EĞER demlemeYontemi = "Espresso" İSE
+        hedefSicaklik ← 93
+    DEĞİLSE
+        hedefSicaklik ← 92  // Filtre ve French Press için
+
+    YAZDIR "Suyu", hedefSicaklik, "dereceye kadar ısıt."
+
+    // 4. Öğütme derecesini kontrol et
+    EĞER kahveTuru = "Espresso" İSE
+        ogutmeDerecesi ← "ince"
+    DEĞİLSE EĞER kahveTuru = "Filtre" İSE
+        ogutmeDerecesi ← "orta"
+    DEĞİLSE EĞER kahveTuru = "French Press" İSE
+        ogutmeDerecesi ← "kalın"
+    DEĞİLSE
+        ogutmeDerecesi ← "orta"
+
+    YAZDIR "Kahveyi", ogutmeDerecesi, "öğüt."
+
+    // 5. Demleme süresini ayarla
+    EĞER demlemeYontemi = "Espresso" İSE
+        demlemeSuresi ← 25  // saniye
+    DEĞİLSE EĞER demlemeYontemi = "Filtre" İSE
+        demlemeSuresi ← 240  // saniye (4 dakika)
+    DEĞİLSE EĞER demlemeYontemi = "French Press" İSE
+        demlemeSuresi ← 300  // saniye (5 dakika)
+    DEĞİLSE
+        demlemeSuresi ← 240
+
+    YAZDIR "Demleme işlemi", demlemeSuresi, "saniye sürmeli."
+
+    // 6. Demlemeyi başlat ve zamanı takip et
+    BAŞLAT timer
+
+    WHILE timer < demlemeSuresi
+        YAZDIR "Demleme devam ediyor... (", demlemeSuresi - timer, "saniye kaldı)"
+        BEKLE 10 saniye
+
+    YAZDIR "Demleme tamamlandı! Kahvenizi servis yapabilirsiniz."
+
+    DÖNDÜR "Kahve hazır"
+
+FONKSIYON SONU
