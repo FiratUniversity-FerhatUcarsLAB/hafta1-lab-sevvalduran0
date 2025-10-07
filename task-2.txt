@@ -1,4 +1,122 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541088
+AD-SOYAD:ŞEVVAL DURAN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+ Tic-Tac-Toe kazanma stratejisi
+import math
+
+# 3x3'lük boş oyun tahtası
+oyun_tahtasi = [" " for _ in range(9)]
+
+# Tahtayı ekrana yazdır
+def tahta_yazdir(tahta):
+    print("\nOyun Tahtası:")
+    for satir in [tahta[i*3:(i+1)*3] for i in range(3)]:
+        print("| " + " | ".join(satir) + " |")
+    print()
+
+# Belirli bir oyuncunun kazanıp kazanmadığını kontrol et
+def kazandi_mi(tahta, oyuncu):
+    kazanma_kombinasyonlari = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Yatay
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Dikey
+        [0, 4, 8], [2, 4, 6]              # Çapraz
+    ]
+    return any(all(tahta[hucre] == oyuncu for hucre in kombinasyon) for kombinasyon in kazanma_kombinasyonlari)
+
+# Tahta doluysa ve kimse kazanmadıysa beraberliktir
+def beraberlik_mi(tahta):
+    return " " not in tahta and not kazandi_mi(tahta, "X") and not kazandi_mi(tahta, "O")
+
+# Boş hücrelerin indekslerini döndür
+def bos_hucreleri_al(tahta):
+    return [i for i, hucre in enumerate(tahta) if hucre == " "]
+
+# Minimax algoritması ile en iyi skoru hesapla
+def minimax(tahta, derinlik, maksimize_ediyor_mu, oyuncu):
+    rakip = "O" if oyuncu == "X" else "X"
+
+    if kazandi_mi(tahta, oyuncu):
+        return 1
+    elif kazandi_mi(tahta, rakip):
+        return -1
+    elif beraberlik_mi(tahta):
+        return 0
+
+    if maksimize_ediyor_mu:
+        en_iyi_skor = -math.inf
+        for hamle in bos_hucreleri_al(tahta):
+            tahta[hamle] = oyuncu
+            skor = minimax(tahta, derinlik + 1, False, oyuncu)
+            tahta[hamle] = " "
+            en_iyi_skor = max(skor, en_iyi_skor)
+        return en_iyi_skor
+    else:
+        en_kotu_skor = math.inf
+        for hamle in bos_hucreleri_al(tahta):
+            tahta[hamle] = rakip
+            skor = minimax(tahta, derinlik + 1, True, oyuncu)
+            tahta[hamle] = " "
+            en_kotu_skor = min(skor, en_kotu_skor)
+        return en_kotu_skor
+
+# Bilgisayarın yapabileceği en iyi hamleyi bul
+def en_iyi_hamleyi_bul(tahta, bilgisayar_oyuncusu):
+    en_iyi_skor = -math.inf
+    secilecek_hamle = None
+    for hamle in bos_hucreleri_al(tahta):
+        tahta[hamle] = bilgisayar_oyuncusu
+        skor = minimax(tahta, 0, False, bilgisayar_oyuncusu)
+        tahta[hamle] = " "
+        if skor > en_iyi_skor:
+            en_iyi_skor = skor
+            secilecek_hamle = hamle
+    return secilecek_hamle
+
+# Oyun döngüsü
+def oyunu_baslat():
+    oyuncu = "X"
+    bilgisayar = "O"
+    siradaki = oyuncu  # İlk oyuncu: kullanıcı
+
+    while True:
+        tahta_yazdir(oyun_tahtasi)
+
+        if siradaki == oyuncu:
+            try:
+                hamle = int(input("Hamlenizi seçin (0-8): "))
+                if hamle not in range(9):
+                    print("Lütfen 0 ile 8 arasında bir sayı girin.")
+                    continue
+                if oyun_tahtasi[hamle] != " ":
+                    print("Bu hücre zaten dolu! Başka bir hücre seçin.")
+                    continue
+            except ValueError:
+                print("Lütfen geçerli bir sayı girin.")
+                continue
+        else:
+            print("Bilgisayar düşünüyor...")
+            hamle = en_iyi_hamleyi_bul(oyun_tahtasi, bilgisayar)
+            print(f"Bilgisayar {hamle} numaralı hücreye hamle yaptı.")
+
+        # Hamleyi uygula
+        oyun_tahtasi[hamle] = siradaki
+
+        # Oyun durumu kontrolü
+        if kazandi_mi(oyun_tahtasi, siradaki):
+            tahta_yazdir(oyun_tahtasi)
+            if siradaki == oyuncu:
+                print("Tebrikler! Oyunu kazandınız! 🎉")
+            else:
+                print("Bilgisayar kazandı! 🤖")
+            break
+        elif beraberlik_mi(oyun_tahtasi):
+            tahta_yazdir(oyun_tahtasi)
+            print("Oyun berabere bitti! 🤝")
+            break
+
+        # Sıra değişimi
+        siradaki = bilgisayar if siradaki == oyuncu else oyuncu
+
+# Oyunu başlat
+oyunu_baslat()
