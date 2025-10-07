@@ -1,4 +1,38 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541088
+AD-SOYAD:ŞEVVAL DURAN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+N kişi için adil makarna paylaşımı algoritması
+FONKSIYON MakarnaPaylasDetay(M, kisilerIstekListesi)
+    // M: Toplam makarna miktarı
+    // kisilerIstekListesi: Her kişinin istediği miktar listesi (pozitif sayılar)
+
+    toplamIstek ← 0
+    N ← uzunluk(kisilerIstekListesi)
+
+    EĞER N <= 0 İSE
+        YAZDIR "Hata: Kişi sayısı sıfır veya negatif olamaz."
+        DÖNDÜR HATALI
+
+    // İstekleri kontrol et
+    TEKRAR i = 0'DAN N-1'E KADAR
+        EĞER kisilerIstekListesi[i] < 0 İSE
+            YAZDIR "Hata: İstek negatif olamaz."
+            DÖNDÜR HATALI
+        toplamIstek ← toplamIstek + kisilerIstekListesi[i]
+
+    EĞER toplamIstek <= M İSE
+        // Makarna yeterli, herkes istediği kadar alabilir
+        YAZDIR "Herkes istediği kadar makarna alabilir."
+        DÖNDÜR kisilerIstekListesi, kalan = M - toplamIstek
+
+    DEĞİLSE
+        // Makarna yetersiz, eşit oranda küçültme yapacağız
+        oran ← M / toplamIstek
+        paylar ← boş liste
+
+        TEKRAR i = 0'DAN N-1'E KADAR
+            paylar[i] ← kisilerIstekListesi[i] * oran
+
+        YAZDIR "Makarna yetersiz, paylar oranla küçültüldü."
+        DÖNDÜR paylar, kalan = 0
