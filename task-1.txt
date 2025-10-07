@@ -1,4 +1,111 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541088
+AD-SOYAD:ŞEVVAL DURAN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+ALGORİTMA MükemmelOmletYap
+
+    // GEREKLİ MALZEMELERİ TANIMLA
+    AYARLA yumurtaSayisi ← 3
+    AYARLA sütMiktari ← 50 ml
+    AYARLA tuz ← 1 tutam
+    AYARLA karabiber ← 1 tutam
+    AYARLA yagVarMi ← DOĞRU
+    AYARLA istegeBagliMalzemeler ← ["peynir", "mantar", "biber", "soğan"]
+    AYARLA kullanilacakMalzemeler ← []
+
+    // MALZEMELERİ KONTROL ET
+    EĞER yumurtaSayisi < 2 İSE
+        YAZ "Yeterli yumurta yok. En az 2 yumurta gerekli."
+        ALGORİTMADAN ÇIK
+    SON
+
+    EĞER yagVarMi = YANLIŞ İSE
+        YAZ "Yağ yok. Yapışmaz tava kullanın veya yağ ekleyin."
+        ALGORİTMADAN ÇIK
+    SON
+
+    // KULLANICIDAN İSTEĞE BAĞLI MALZEMELERİ SEÇMESİNİ İSTE
+    HER bir malzeme İÇİN istegeBagliMalzemeler LİSTESİNDE
+        YAZ malzeme + " eklemek ister misiniz? (evet/hayır)"
+        GİRDİ al → cevap
+        EĞER cevap = "evet" İSE
+            kullanilacakMalzemeler LİSTESİNE malzeme EKLE
+        SON
+    SON
+
+    // SEÇİLEN MALZEMELERİ HAZIRLA VE EKLE
+    MalzemeleriHazirlaVeEkle(kullanilacakMalzemeler)
+
+    // OMLET HARCI HAZIRLA
+    OmletHarciniHazirla(yumurtaSayisi, sütMiktari, tuz, karabiber)
+
+    // TAVAYI ISIT
+    TavayiIsit()
+
+    // HARCI DÖK VE PİŞİR
+    HarciDokVePisirmeyeBasla(kullanilacakMalzemeler)
+
+    YAZ "Omlet hazır. Afiyet olsun!"
+
+SON ALGORİTMA
+
+// ----------------------------
+
+PROSEDÜR MalzemeleriHazirlaVeEkle(malzemeler)
+    HER bir m İÇİN malzemeler LİSTESİNDE
+        YAZ m + " doğranıyor ve omlete eklenmeye hazır..."
+        BEKLE 2 saniye
+    SON
+    YAZ "Tüm isteğe bağlı malzemeler eklendi."
+SON PROSEDÜR
+
+// ----------------------------
+
+PROSEDÜR OmletHarciniHazirla(yumurtaSayisi, sütMiktari, tuz, karabiber)
+    YAZ "Yumurtalar kırılıyor..."
+    BEKLE 1 saniye
+    YAZ sütMiktari + " süt ekleniyor..."
+    BEKLE 1 saniye
+    YAZ "Tuz ve karabiber ekleniyor..."
+    BEKLE 1 saniye
+    YAZ "Karışım çırpılıyor..."
+    BEKLE 2 saniye
+    YAZ "Omlet harcı hazır."
+SON PROSEDÜR
+
+// ----------------------------
+
+PROSEDÜR TavayiIsit()
+    YAZ "Tava ocağa konuyor ve altı açılıyor..."
+    BEKLE 3 saniye
+    YAZ "Yağ ekleniyor..."
+    BEKLE 2 saniye
+    YAZ "Tava ısındı."
+SON PROSEDÜR
+
+// ----------------------------
+
+PROSEDÜR HarciDokVePisirmeyeBasla(malzemeler)
+    YAZ "Omlet harcı tavaya dökülüyor..."
+    BEKLE 1 saniye
+
+    AYARLA süre ← 0
+    İKEN süre < 5
+        YAZ "Omlet pişiyor... (" + süre + " saniye)"
+        BEKLE 1 saniye
+        süre ← süre + 1
+    SON
+
+    EĞER malzemeler UZUNLUĞU > 0 İSE
+        YAZ "Ek malzemeler tavaya ekleniyor..."
+        BEKLE 2 saniye
+    SON
+
+    YAZ "Omletin bir tarafı pişti, çeviriliyor..."
+    BEKLE 3 saniye
+
+    YAZ "Diğer taraf da pişiyor..."
+    BEKLE 2 saniye
+
+    YAZ "Omlet ocaktan alınıyor..."
+SON PROSEDÜR
