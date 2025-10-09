@@ -43,5 +43,5 @@ FONKSIYON Minimax(tahta, derinlik, maksimizeEdiyorMu, oyuncu):
             tahta[hamle] ← " "
             enKotuSkor ← MIN(enKotuSkor, skor)
         DÖNDÜR enKotuSkor
-
-
+LLM'e tic-tac-toe oyununu kazanmak için en iyi hamleleri içeren bir algoritma geliştirmek istiyorum. Koşullu  durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin
+diye sordum
