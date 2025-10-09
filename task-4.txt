@@ -36,3 +36,4 @@ FONKSIYON MakarnaPaylasDetay(M, kisilerIstekListesi)
 
         YAZDIR "Makarna yetersiz, paylar oranla küçültüldü."
         DÖNDÜR paylar, kalan = 0
+LLM'e kişi sayısı belli olmayan bir yerde adil bir makarna paylaşımı için bir algoritma geliştirmek istiyorum bana yardımcı olur musun diye sordum.
