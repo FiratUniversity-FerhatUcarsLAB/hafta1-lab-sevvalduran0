@@ -32,3 +32,4 @@ ALGORITMA RehberiAlfabetikSirala(rehber)
     DÖNDÜR rehber
 
 ALGORİTMA SONU
+LLM'e telefon rehberimi alfabetik düzenlemek için bir algoritma geliştirmek istiyorum. Koşullu  durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin diye sordum.Türkçe'ye çevirmesini istedim
