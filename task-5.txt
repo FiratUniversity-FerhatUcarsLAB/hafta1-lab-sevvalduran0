@@ -74,3 +74,4 @@ Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya e
     DÖNDÜR "Kahve hazır"
 
 FONKSIYON SONU
+LLM'e kahveyi en iyi şekilde demleyebilmek için adım adım algoritma geliştirmek istiyorum. Koşullu  durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin diye sordum
