@@ -109,3 +109,5 @@ PROSEDÜR HarciDokVePisirmeyeBasla(malzemeler)
 
     YAZ "Omlet ocaktan alınıyor..."
 SON PROSEDÜR
+LLM'e mükemmel bir omlet yapmak için adım adım algoritma geliştirmek istiyorum,koşullu  durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin
+diye sordum ve Türkçe'ye çevirmesini istedim
